@@ -239,7 +239,9 @@ void buildTetra(Qt3DCore::QEntity *rootEntity){
 
 
     // Material
-    QMaterial *material = new Qt3DExtras::QPhongMaterial(rootEntity);
+    //Qt3DExtras::QPhongMaterial *material = new Qt3DExtras::QPhongMaterial(rootEntity);
+    //material->setDiffuse(QColor(QRgb(0xbeb32b)));
+    Qt3DRender::QMaterial *material = new Qt3DExtras::QPerVertexColorMaterial(rootEntity);
 
     // Torus
     Qt3DCore::QEntity *customMeshEntity = new Qt3DCore::QEntity(rootEntity);
@@ -337,6 +339,8 @@ void buildTetra(Qt3DCore::QEntity *rootEntity){
     // Attributes
     QAttribute *positionAttribute = new QAttribute();
     positionAttribute->setAttributeType(QAttribute::VertexAttribute);
+    positionAttribute->setVertexBaseType(Qt3DRender::QAttribute::Float);
+    positionAttribute->setVertexSize(3);
     positionAttribute->setBuffer(vertexDataBuffer);
     positionAttribute->setByteOffset(0);
     positionAttribute->setByteStride(9 * sizeof(float));
@@ -345,6 +349,8 @@ void buildTetra(Qt3DCore::QEntity *rootEntity){
 
     QAttribute *normalAttribute = new QAttribute();
     normalAttribute->setAttributeType(QAttribute::VertexAttribute);
+    normalAttribute->setVertexBaseType(Qt3DRender::QAttribute::Float);
+    normalAttribute->setVertexSize(3);
     normalAttribute->setBuffer(vertexDataBuffer);
     normalAttribute->setByteOffset(3 * sizeof(float));
     normalAttribute->setByteStride(9 * sizeof(float));
@@ -353,6 +359,8 @@ void buildTetra(Qt3DCore::QEntity *rootEntity){
 
     QAttribute *colorAttribute = new QAttribute();
     colorAttribute->setAttributeType(QAttribute::VertexAttribute);
+    colorAttribute->setVertexBaseType(Qt3DRender::QAttribute::Float);
+    colorAttribute->setVertexSize(3);
     colorAttribute->setBuffer(vertexDataBuffer);
     colorAttribute->setByteOffset(6 * sizeof(float));
     colorAttribute->setByteStride(9 * sizeof(float));
@@ -361,11 +369,12 @@ void buildTetra(Qt3DCore::QEntity *rootEntity){
 
     QAttribute *indexAttribute = new QAttribute();
     indexAttribute->setAttributeType(QAttribute::IndexAttribute);
+    indexAttribute->setVertexBaseType(Qt3DRender::QAttribute::UnsignedShort);
+    indexAttribute->setVertexSize(1);
     indexAttribute->setBuffer(indexDataBuffer);
-    colorAttribute->setDataType(QAttribute::UnsignedInt);
-    colorAttribute->setByteOffset(0);
-    colorAttribute->setByteStride(0);
-    colorAttribute->setCount(12);
+    indexAttribute->setByteOffset(0);
+    indexAttribute->setByteStride(0);
+    indexAttribute->setCount(12);
 
     customGeometry->addAttribute(positionAttribute);
     customGeometry->addAttribute(normalAttribute);
