@@ -117,7 +117,7 @@ Qt3DCore::QEntity *buildLineOne(Qt3DCore::QEntity *parentEntity)
     positionAttribute->setVertexSize(3);
     positionAttribute->setByteOffset(0);
     positionAttribute->setByteStride(stride);
-    positionAttribute->setCount(vertexNum / 6);
+    positionAttribute->setCount(vertexNum);
     positionAttribute->setName(Qt3DRender::QAttribute::defaultPositionAttributeName());
 
 
@@ -128,7 +128,7 @@ Qt3DCore::QEntity *buildLineOne(Qt3DCore::QEntity *parentEntity)
     colorAttribute->setVertexSize(3);
     colorAttribute->setByteOffset(3 * sizeof(float));
     colorAttribute->setByteStride(stride);
-    colorAttribute->setCount(vertexNum / 6);
+    colorAttribute->setCount(vertexNum);
     colorAttribute->setName(Qt3DRender::QAttribute::defaultColorAttributeName());
 
     geometry->addAttribute(positionAttribute);
@@ -221,7 +221,7 @@ Qt3DCore::QEntity *buildLineTwo(Qt3DCore::QEntity *parentEntity)
     indexAttribute->setVertexSize(2);
     indexAttribute->setByteOffset(0);
     indexAttribute->setByteStride(2 * sizeof(unsigned int));
-    indexAttribute->setCount(1);
+    indexAttribute->setCount(2);
     geometry->addAttribute(indexAttribute);
     //qInfo() << "unsigned int " << sizeof(unsigned int) << " signed int " << sizeof (int);
 
@@ -244,7 +244,6 @@ Qt3DCore::QEntity *buildLineTwo(Qt3DCore::QEntity *parentEntity)
 
 
 void buildTetra(Qt3DCore::QEntity *rootEntity){
-
 
     // Torus
     Qt3DCore::QEntity *customMeshEntity = new Qt3DCore::QEntity(rootEntity);
@@ -353,7 +352,7 @@ void buildTetra(Qt3DCore::QEntity *rootEntity){
     positionAttribute->setVertexSize(3);
     positionAttribute->setByteOffset(0);
     positionAttribute->setByteStride(9 * sizeof(float));
-    positionAttribute->setCount(4);
+    positionAttribute->setCount(36);
 
     QAttribute *normalAttribute = new QAttribute();
     normalAttribute->setBuffer(vertexDataBuffer);
@@ -363,7 +362,7 @@ void buildTetra(Qt3DCore::QEntity *rootEntity){
     normalAttribute->setVertexSize(3);
     normalAttribute->setByteOffset(3 * sizeof(float));
     normalAttribute->setByteStride(9 * sizeof(float));
-    normalAttribute->setCount(4);
+    normalAttribute->setCount(36);
 
 
     QAttribute *colorAttribute = new QAttribute();
@@ -374,7 +373,7 @@ void buildTetra(Qt3DCore::QEntity *rootEntity){
     colorAttribute->setVertexSize(3);
     colorAttribute->setByteOffset(6 * sizeof(float));
     colorAttribute->setByteStride(9 * sizeof(float));
-    colorAttribute->setCount(4);
+    colorAttribute->setCount(36);
 
 
     QAttribute *indexAttribute = new QAttribute();
@@ -384,7 +383,7 @@ void buildTetra(Qt3DCore::QEntity *rootEntity){
     indexAttribute->setVertexSize(3);
     indexAttribute->setByteOffset(0);
     indexAttribute->setByteStride(3);
-    indexAttribute->setCount(12);
+    indexAttribute->setCount(9);
 
     customGeometry->addAttribute(positionAttribute);
     customGeometry->addAttribute(normalAttribute);
