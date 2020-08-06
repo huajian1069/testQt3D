@@ -81,7 +81,7 @@
 
 #include <Qt3DExtras/qt3dwindow.h>
 #include <Qt3DExtras/qfirstpersoncameracontroller.h>
-
+#include <Qt3DExtras/qorbitcameracontroller.h>
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
@@ -122,7 +122,7 @@ int main(int argc, char **argv)
     lightEntity->addComponent(lightTransform);
 
     // For camera controls
-    Qt3DExtras::QFirstPersonCameraController *camController = new Qt3DExtras::QFirstPersonCameraController(rootEntity);
+    Qt3DExtras::QOrbitCameraController *camController = new Qt3DExtras::QOrbitCameraController(rootEntity);
     camController->setCamera(cameraEntity);
 
     // Scenemodifier
